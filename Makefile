@@ -6,7 +6,7 @@
 #    By: cfiliber <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/18 17:00:59 by cfiliber          #+#    #+#              #
-#    Updated: 2021/11/18 17:16:48 by cfiliber         ###   ########.fr        #
+#    Updated: 2021/11/19 13:28:37 by cfiliber         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,15 +17,13 @@ LIB_PATH = ./libft/
 LIB = $(LIB_PATH)libft.a
 
 SRCS = \
-		pipex.c\
-		execute.c\
-		error.c\
+		so_long.c\
 
 OBJS = $(SRCS:.c=.o)
 
 CC = gcc
 
-CFLAGS = -Wall -Wextra -Werror -g -I libft
+CFLAGS = -Wall -Wextra -Werror -g -I libft -Imlx # ho aggiunto -Imlx per includere minilibX 
 
 %.o : %.c
 	$(CC) $(CFLAGS) -c $< -o $@
@@ -36,7 +34,7 @@ subsystem:
 	make all -C $(LIB_PATH)
 
 $(NAME): $(OBJS)
-	$(CC) $(CFLAGS) -o $(NAME) $(OBJS) $(LIB)
+	$(CC) $(CFLAGS) -Lmlx -lmlx -framework OpenGL -framework AppKit -o $(NAME) $(OBJS) $(LIB)
 
 clean:
 	make clean -C $(LIB_PATH)
