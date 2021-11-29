@@ -1,33 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strchr.c                                        :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cfiliber <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/02/25 19:52:44 by cfiliber          #+#    #+#             */
-/*   Updated: 2021/11/25 19:00:30 by cfiliber         ###   ########.fr       */
+/*   Created: 2021/11/27 15:35:41 by cfiliber          #+#    #+#             */
+/*   Updated: 2021/11/29 17:26:51 by cfiliber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "so_long.h"
 
-char	*ft_strchr(const char *s, int c)
+int main(int argc, char **argv)
 {
-	char	car;
-	int	i;
-	int		slen;
-	char	*s2;
-
-	car = (char)c;
-	slen = ft_strlen(s);
-	s2 = (char *)s;
-	i = 0;
-	while (i <= ft_strlen(s))
-	{
-		if (s[i] == car)
-			return (s2 + i);
-		i++;
-	}
-	return (0);
+    char    **map;
+    t_game  *game;
+    
+    if(valid_file(argc, argv[1] == -1))
+        return (-1);
+    game->tilemap = map_parse(argv[1], game);
+    if (!map)
+        return (-1);
+    
 }

@@ -6,7 +6,7 @@
 #    By: cfiliber <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/15 18:06:47 by cfiliber          #+#    #+#              #
-#    Updated: 2021/11/16 15:52:37 by cfiliber         ###   ########.fr        #
+#    Updated: 2021/11/25 19:14:12 by cfiliber         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,8 @@ SRCS = ft_isprint.c     ft_putchar_fd.c ft_strlcat.c    ft_substr.c     ft_atoi.
 	ft_isalnum.c    ft_memcmp.c     ft_split.c      ft_strncmp.c \
 	ft_isalpha.c    ft_memcpy.c     ft_strchr.c     ft_strnstr.c \
 	ft_isascii.c    ft_memmove.c    ft_strdup.c     ft_strrchr.c \
-	ft_isdigit.c    ft_memset.c     ft_strjoin.c    ft_strtrim.c
+	ft_isdigit.c    ft_memset.c     ft_strjoin.c    ft_strtrim.c \
+	ft_strend_cmp.c    ft_chartable_linecount.c    ft_free_chartable.c
 
 OBJS = $(SRCS:.c=.o)
 

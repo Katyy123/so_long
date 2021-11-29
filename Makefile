@@ -6,7 +6,7 @@
 #    By: cfiliber <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/18 17:00:59 by cfiliber          #+#    #+#              #
-#    Updated: 2021/11/19 13:28:37 by cfiliber         ###   ########.fr        #
+#    Updated: 2021/11/29 14:41:54 by cfiliber         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,7 +23,7 @@ OBJS = $(SRCS:.c=.o)
 
 CC = gcc
 
-CFLAGS = -Wall -Wextra -Werror -g -I libft -Imlx # ho aggiunto -Imlx per includere minilibX 
+CFLAGS = -Wall -Wextra -Werror -g -I libft -Imlx #-fsanitize=address# ho aggiunto -Imlx per includere minilibX 
 
 %.o : %.c
 	$(CC) $(CFLAGS) -c $< -o $@
@@ -34,7 +34,8 @@ subsystem:
 	make all -C $(LIB_PATH)
 
 $(NAME): $(OBJS)
-	$(CC) $(CFLAGS) -Lmlx -lmlx -framework OpenGL -framework AppKit -o $(NAME) $(OBJS) $(LIB)
+	$(CC) $(CFLAGS) -lmlx -framework OpenGL -framework AppKit -o $(NAME) $(OBJS) $(LIB)
+	echo "To start the game, type "./so_long <map_file>".\nYou can choose one of theese maps:\n "map1.ber"  "map2.ber""
 
 clean:
 	make clean -C $(LIB_PATH)

@@ -1,33 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strchr.c                                        :+:      :+:    :+:   */
+/*   errors.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cfiliber <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/02/25 19:52:44 by cfiliber          #+#    #+#             */
-/*   Updated: 2021/11/25 19:00:30 by cfiliber         ###   ########.fr       */
+/*   Created: 2021/11/27 16:15:40 by cfiliber          #+#    #+#             */
+/*   Updated: 2021/11/27 19:25:36 by cfiliber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "so_long.h"
 
-char	*ft_strchr(const char *s, int c)
+int error(char *message)
 {
-	char	car;
-	int	i;
-	int		slen;
-	char	*s2;
+    printf("Error:\n%s\n", message);
+    return (-1);
+}
 
-	car = (char)c;
-	slen = ft_strlen(s);
-	s2 = (char *)s;
-	i = 0;
-	while (i <= ft_strlen(s))
-	{
-		if (s[i] == car)
-			return (s2 + i);
-		i++;
-	}
-	return (0);
+void    print_warning(char *message)
+{
+    printf("Warning:\n%s\n", message);
 }

@@ -1,33 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strchr.c                                        :+:      :+:    :+:   */
+/*   ft_strend_cmp.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cfiliber <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/02/25 19:52:44 by cfiliber          #+#    #+#             */
-/*   Updated: 2021/11/25 19:00:30 by cfiliber         ###   ########.fr       */
+/*   Created: 2021/11/25 18:42:57 by cfiliber          #+#    #+#             */
+/*   Updated: 2021/11/25 18:56:10 by cfiliber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strchr(const char *s, int c)
+/* Returns 1 if <name> ends in <extension>, 0 if not */
+int	ft_strend_cmp(char *name, char *end)
 {
-	char	car;
-	int	i;
-	int		slen;
-	char	*s2;
+	int	name_len;
+	int	ext_len;
 
-	car = (char)c;
-	slen = ft_strlen(s);
-	s2 = (char *)s;
-	i = 0;
-	while (i <= ft_strlen(s))
+	name_len = ft_strlen(name);
+	ext_len = ft_strlen(end);
+	if (name_len <= ext_len)
+		return (0);
+	name += name_len - ext_len;
+	while (*name)
 	{
-		if (s[i] == car)
-			return (s2 + i);
-		i++;
+		if (*name != *end)
+			return (0);
+		name++;
+		end++;
 	}
-	return (0);
+	return (1);
 }
+
