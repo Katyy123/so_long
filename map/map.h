@@ -6,7 +6,7 @@
 /*   By: cfiliber <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/27 15:54:46 by cfiliber          #+#    #+#             */
-/*   Updated: 2021/11/29 19:03:44 by cfiliber         ###   ########.fr       */
+/*   Updated: 2021/11/30 19:38:15 by cfiliber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,19 +18,33 @@
 # include <unistd.h>
 # include "../gnl/get_next_line.h"
 
-int     valid_file(int argc, char *file);
-char	**read_map(char *file);
-int		valid_map(char **map);
-
 typedef struct s_map_check_data
 {
     int     size_x;
     int     size_y;
-    int     point_x;
-    int     point_y;
-    t_bool  player;
-    t_bool  collect;
-    t_bool  exit;
+    int     player;
+    int     collect;
+    int     exit;
+    t_bool  rectangular;
+    t_bool  border_walls;
+    t_bool  valid_char;
 }   t_map_check_data;
+
+/* map_reader.c */
+int                 valid_file(int argc, char *file);
+int                 file_linecount(char *file);
+char	            **read_map(char *file);
+char                **map_parse(char *file);
+
+/* map_checker.c */
+t_map_check_data	map_check_init(t_map_check_data data, char **map);
+void	            is_rectangular(char *row, t_map_check_data *data);
+void	            is_valid_char(char character, t_map_check_data *data);
+void	            check_border(char c, t_map_check_data *data, int x, int y);
+t_bool	            valid_map(char **map);
+
+/* map_checker_2.c */
+t_bool  check_map_errors(t_map_check_data data);
+void    count_chars(t_map_check_data *data, char c);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: cfiliber <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/27 15:52:04 by cfiliber          #+#    #+#             */
-/*   Updated: 2021/11/29 19:28:51 by cfiliber         ###   ########.fr       */
+/*   Updated: 2021/11/30 19:18:50 by cfiliber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,37 +16,60 @@ t_map_check_data	map_check_init(t_map_check_data data, char **map)
 {
 	data.size_x = ft_strlen(map[0]);
 	data.size_y = ft_chartable_linecount(map);
-	data.point_x = 0;
-	data.point_y = 0;
-	data.player = FALSE;
-	data.collect = FALSE;
-	data.exit = FALSE;
+	data.player = 0;
+	data.collect = 0;
+	data.exit = 0;
+	data.rectangular = TRUE;
+	data.border_walls = TRUE;
+	data.valid_char = TRUE;
 	return (data);
 }
 
-check(t_map_check_data data, char **map)
+void	is_rectangular(char *row, t_map_check_data *data)
 {
-
+	if (ft_strlen(row) != data->size_x)
+		data->rectangular = FALSE;
 }
 
-int	valid_map(char **map)
+void	is_valid_char(char character, t_map_check_data *data)
+{
+	if (character != '0' && character != '1' && character != 'P' &&
+		character != 'E' && character != 'C')
+		data->valid_char = FALSE;
+}
+
+void	check_border(char c, t_map_check_data *data, int x, int y)
+{
+	if (x == 0 || y == 0 || x == data->size_x - 1 || y == data->size_y - 1)
+	{
+		if (c != 1)
+			data->border_walls = FALSE;
+	}
+}
+
+t_bool	valid_map(char **map)
 {
 	t_map_check_data	data;
 	t_bool				valid;
+	int					x;
+	int					y;
 
 	valid = TRUE;
+	x = 0;
+	y = 0;
 	data = map_check_init(data, map);
-	while (map[data.point_y])
+	while (map[y])
 	{
-		if (ft_strlen(map[data.point_y]) != data.size_x)
-			valid = error("map should be rectangular");
-		while (map[data.point_y][data.point_x])
+		is_rectangular(map[y], &data);
+		while (map[y][x])
 		{
-			if (!check(data, map))
-				valid = FALSE;
-			data.point_x++;
+			is_valid_char(map[y][x], &data);
+			check_border(map[y][x], &data, x, y);
+			count_chars(&data, map[y][x]);
+			x++;
 		}
-		data.point_y++;
+		y++;
 	}
+	valid = check_map_errors(data);
 	return (valid);
 }

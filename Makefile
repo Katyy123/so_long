@@ -6,18 +6,24 @@
 #    By: cfiliber <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/18 17:00:59 by cfiliber          #+#    #+#              #
-#    Updated: 2021/11/29 14:41:54 by cfiliber         ###   ########.fr        #
+#    Updated: 2021/11/30 18:56:04 by cfiliber         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = so_long
 
 LIB_PATH = ./libft/
-
 LIB = $(LIB_PATH)libft.a
 
-SRCS = \
-		so_long.c\
+SRCS = $(MAIN_SRC) $(SRC_GNL) $(SRC_MAP)
+
+MAIN_SRC = main.c errors.c
+
+GNL = get_next_line.c
+SRC_GNL = $(addprefix gnl/, $(GNL))
+
+MAP = map_reader.c map_checker.c map_checker_2.C
+SRC_MAP = $(addprefix map/, $(MAP))
 
 OBJS = $(SRCS:.c=.o)
 

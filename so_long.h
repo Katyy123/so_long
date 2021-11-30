@@ -6,7 +6,7 @@
 /*   By: cfiliber <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/18 17:01:40 by cfiliber          #+#    #+#             */
-/*   Updated: 2021/11/29 16:50:54 by cfiliber         ###   ########.fr       */
+/*   Updated: 2021/11/30 19:09:21 by cfiliber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@
 #include <mlx.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include "libft/libft.h"
+#include "gnl/get_next_line.h"
 
 /* Keycodes */
 # define KEY_A 0
@@ -49,7 +51,6 @@ typedef enum	e_bool
 typedef struct	s_tile
 {
 	char			type;
-	char			og_type;//original type, used to reset the game
 	int				position_x;
 	int				position_y;
 	struct s_tile	*up;//puntatore alla casella (tile) superiore
@@ -73,5 +74,14 @@ typedef struct	s_game {
 	int		collects;
 	t_tile	**tilemap;
 }				t_game;
+
+/* main.c */
+int main(int argc, char **argv);
+
+
+/* errors.c */
+int		error(char *message);
+void    *null_error(char *message);
+void    print_warning(char *message);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: cfiliber <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/29 15:35:56 by cfiliber          #+#    #+#             */
-/*   Updated: 2021/11/29 16:47:32 by cfiliber         ###   ########.fr       */
+/*   Updated: 2021/11/30 18:49:38 by cfiliber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,9 @@ int valid_file(int argc, char *file)
         return (error("there is no map file"));
     if (argc > 2)
         print_warning("only the first file will be used");
-    if (!ft_strend_cmp(file, ".ber") == 0)
+    if (!ft_strend_cmp(file, ".ber"))
         return (error("map should be a .ber file"));
-    return (0);
+    return (1);
 }
 
 int	file_linecount(char *file)
@@ -59,27 +59,27 @@ char	**read_map(char *file)
 
 	line_count = file_linecount(file);
     if (line_count <= 0)
-		return (error("the file may not exist.\nChoose one of theese map files:\n map1.ber  map2.ber"));
+		return (null_error("the file may not exist.\nChoose one of theese map files:\n map1.ber  map2.ber"));
 	map = malloc(sizeof(char *) * line_count + 1);
 	if (map == NULL)
-		return (error("malloc failure on read_map()"));
+		return (null_error("malloc failure on read_map()"));
     fd = open(file, O_RDONLY);
     i = 0;
     while (i < line_count)
 	{
         map[i] = get_next_line(fd);//ogni stringa map[i] viene allocata in gnl
 		if (!map)
-			return (error("get_next_line failure"));
+			return (null_error("get_next_line failure"));
 	}
     map[i] = NULL;
     close(fd);
 	return (map);
 }
 
-t_tile  **map_parse(char *file, t_game game)
+char  **map_parse(char *file)//poi rimettere t_tile, se lo userò, e game come parametro
 {
     char    **map;
-    t_tile  **tile_map;
+    //t_tile  **tile_map;
     
     map = read_map(file);
     if (!map)
@@ -89,9 +89,10 @@ t_tile  **map_parse(char *file, t_game game)
         ft_free_chartable(map);
         return (NULL);
     }
-    tile_map = gen_tilemap(map, game);
-    ft_free_chartable(map);
-    if (!tile_map)
-        return(NULL);
-    return (tile_map);
+    //tile_map = gen_tilemap(map, game);
+    //ft_free_chartable(map);
+    //if (!tile_map)
+        //return(NULL);
+    //return (tile_map);
+    return (map);
 }

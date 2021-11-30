@@ -87,7 +87,7 @@ char	*ft_get_line(char *temp)
 	return (line);
 }
 
-char	**ft_read_to_temp(int fd, char *temp)
+char	*ft_read_to_temp(int fd, char *temp)
 {
 	char	*buff;
 	int		rd_bytes;
@@ -118,7 +118,7 @@ char	*get_next_line(int fd)
 
 	if (fd < 0 || BUFFER_SIZE <= 0)//controlli
 		return (0);
-	temp = *ft_read_to_temp(fd, temp);//leggo e salvo ciò che ho letto diverse volte, arrivando a \n, in temp
+	temp = ft_read_to_temp(fd, temp);//leggo e salvo ciò che ho letto diverse volte, arrivando a \n, in temp
 	if (!temp)
 		return (NULL);
 	line = ft_get_line(temp);//ottiene line da temp
