@@ -6,7 +6,7 @@
 #    By: cfiliber <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/18 17:00:59 by cfiliber          #+#    #+#              #
-#    Updated: 2021/11/30 18:56:04 by cfiliber         ###   ########.fr        #
+#    Updated: 2021/12/01 17:58:04 by cfiliber         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,10 +19,10 @@ SRCS = $(MAIN_SRC) $(SRC_GNL) $(SRC_MAP)
 
 MAIN_SRC = main.c errors.c
 
-GNL = get_next_line.c
+GNL = get_next_line.c get_next_line_utils.c
 SRC_GNL = $(addprefix gnl/, $(GNL))
 
-MAP = map_reader.c map_checker.c map_checker_2.C
+MAP = map_reader.c map_checker.c map_checker_2.c
 SRC_MAP = $(addprefix map/, $(MAP))
 
 OBJS = $(SRCS:.c=.o)
@@ -30,6 +30,15 @@ OBJS = $(SRCS:.c=.o)
 CC = gcc
 
 CFLAGS = -Wall -Wextra -Werror -g -I libft -Imlx #-fsanitize=address# ho aggiunto -Imlx per includere minilibX 
+
+GREEN = '\x1b[32m'
+YELLOW = '\x1b[33m'
+RED = '\x1b[31m'
+MAGENTA = '\x1b[35m'
+CYAN = '\x1b[36m'
+GRAY = '\x1b[2;37m'
+CURSIVE = '\x1b[3m'
+RESET = '\x1b[0m'
 
 %.o : %.c
 	$(CC) $(CFLAGS) -c $< -o $@
@@ -41,7 +50,8 @@ subsystem:
 
 $(NAME): $(OBJS)
 	$(CC) $(CFLAGS) -lmlx -framework OpenGL -framework AppKit -o $(NAME) $(OBJS) $(LIB)
-	echo "To start the game, type "./so_long <map_file>".\nYou can choose one of theese maps:\n "map1.ber"  "map2.ber""
+	@echo $(GREEN)$(CURSIVE)"\nAll files have been compiled"$(RESET)
+	@echo $(MAGENTA)$(CURSIVE)"\nTo start the game, type ./so_long and map name.\nFor example: ./so_long maps/map1.ber\n"$(RESET)
 
 clean:
 	make clean -C $(LIB_PATH)

@@ -1,143 +1,98 @@
-/* 
-*	GET_NEXT_LINE
-*	-------------
-*	DESCRIPTION
-*	This function takes an opened file descriptor and returns its next line.
-*	This function has undefined behavior when reading from a binary file.
-*	PARAMETERS
-*	#1. A file descriptor 
-*	RETURN VALUES
-*	If successful, get_next_line returns a string with the full line ending in
-*	a line break (`\n`) when there is one. 
-*	If an error occurs, or there's nothing more to read, it returns NULL.
-*	----------------------------------------------------------------------------
-*	AUXILIARY FUNCTIONS
-*	-------------------
-*	READ_TO_LEFT_STR
-*	-----------------
-*	DESCRIPTION
-*	Takes the opened file descriptor and saves on a "buff" variable what readed
-*	from it. Then joins it to the cumulative static variable for the persistence
-*	of the information.
-*	PARAMETERS
-*	#1. A file descriptor.
-*	#2. The pointer to the cumulative static variable from previous runs of
-*	get_next_line.
-*	RETURN VALUES
-*	The new static variable value with buffer joined for the persistence of the info,
-*	or NULL if error.
-*/
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: cfiliber <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/03/17 19:28:26 by cfiliber          #+#    #+#             */
+/*   Updated: 2021/12/01 17:55:21 by cfiliber         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "get_next_line.h"
-#include <unistd.h>
-#include <stdio.h>
-#include <fcntl.h>
 
-char	*ft_new_temp(char *temp)
+char	*ft_strdup_gnl(const char *s1)
 {
-	int		i;
-	int		j;
-	char	*new_temp;
+	void	*ptr;
+	size_t	tot_size;
 
-	i = 0;
-	while (temp[i] && temp[i] != '\n')//i diventa = indice di \n
-		i++;
-	if (!temp[i])//se non avevo letto nulla (EOF o error) oppure in temp non c'è \n (perchè ho raggiunto EOF)
-	{
-		free(temp);
-		return (NULL);
-	}
-	new_temp = (char *)malloc(sizeof(char) * (ft_strlen(temp) - i));//devo provare a togliere il cast del malloc //tolto +1
-	if (!new_temp)
-		return (NULL);
-	i++;
-	j = 0;
-	while (temp[i])
-		new_temp[j++] = temp[i++];
-	new_temp[j] = '\0';
-	free(temp);
-	return (new_temp);
-}
-
-char	*ft_get_line(char *temp)
-{
-	int		i;
-	char	*line;
-
-	i = 0;
-	if (!temp[i])//se la stringa è vuota  //non serve
-		return (NULL);
-	while (temp[i] && temp[i] != '\n')//raggiungo \n (i diventa l'indice di \n), così so quanto deve essere lunga line
-		i++;
-	line = (char *)malloc(sizeof(char) * (i + 2));//alloco line. +2 perché aggingo \n e \0
-	if (!line)
-		return (NULL);
-	i = 0;
-	while (temp[i] && temp[i] != '\n')
-	{
-		line[i] = temp[i];
-		i++;
-	}
-	if (temp[i] == '\n')
-	{
-		line[i] = temp[i];
-		i++;
-	}
-	line[i] = '\0';
-	return (line);
-}
-
-char	*ft_read_to_temp(int fd, char *temp)
-{
-	char	*buff;
-	int		rd_bytes;
-
-	buff = malloc((BUFFER_SIZE + 1) * sizeof(char));
-	if (!buff)
-		return (NULL);
-	rd_bytes = 1;
-	while (!ft_strchr(temp, '\n') && rd_bytes != 0)//finché non incontro il \n oppure non raggiungo EOF
-	{
-		rd_bytes = read(fd, buff, BUFFER_SIZE);
-		if (rd_bytes == -1)
-		{
-			free(buff);
-			return (NULL);
-		}
-		buff[rd_bytes] = '\0';
-		temp = ft_strjoin(temp, buff);
-	}
-	free(buff);
-	return (temp);
-}
-
-char	*get_next_line(int fd)
-{
-	char		*line;
-	static char	*temp;
-
-	if (fd < 0 || BUFFER_SIZE <= 0)//controlli
+	tot_size = sizeof(const char) * (ft_strlen_gnl(s1) + 1);
+	ptr = malloc(tot_size);
+	if (!(ptr))
 		return (0);
-	temp = ft_read_to_temp(fd, temp);//leggo e salvo ciò che ho letto diverse volte, arrivando a \n, in temp
-	if (!temp)
-		return (NULL);
-	line = ft_get_line(temp);//ottiene line da temp
-	temp = ft_new_temp(temp);//toglie line da temp
-	printf("new_temp: %s\n", temp);
-	return (line);
+	ft_memcpy_gnl(ptr, s1, tot_size);
+	return (ptr);
 }
 
-/*
-int	main(void)
+char	*ft_lines_split(char *stat_arr, char **line, ssize_t byte_read)
 {
-	char	*line;
-	int		fd;
+	unsigned int	i;
+	char			*tmp;
 
-	fd = open("file.txt", O_RDWR | O_CREAT, S_IRUSR | S_IWUSR);
-	line = get_next_line(fd);
-	printf("line: %s", line);
-	free(line);
-	close(fd);
-	return (0);
+	i = 0;
+	while (stat_arr[i])
+	{
+		if (stat_arr[i] == '\n')
+			break ;
+		i++;
+	}
+	if (i < ft_strlen_gnl(stat_arr))
+	{
+		*line = ft_substr_gnl(stat_arr, 0, i);
+		tmp = ft_substr_gnl(stat_arr, i + 1, ft_strlen_gnl(stat_arr));
+		free(stat_arr);
+		stat_arr = ft_strdup_gnl(tmp);
+		free(tmp);
+	}
+	else if (byte_read == 0)
+	{
+		*line = stat_arr;
+		stat_arr = NULL;
+	}
+	return (stat_arr);
 }
-*/
+
+char	*ft_store_line(char *buf, char *stat_arr)
+{
+	char			*tmp;
+
+	if (stat_arr)
+	{
+		tmp = ft_strjoin_gnl(stat_arr, buf);
+		free(stat_arr);
+		stat_arr = ft_strdup_gnl(tmp);
+		free(tmp);
+	}
+	else
+		stat_arr = ft_strdup_gnl(buf);
+	return (stat_arr);
+}
+
+int	get_next_line(int fd, char **line)
+{
+	static char	*stat_arr[4096];
+	char		buf[BUFFER_SIZE + 1];
+	ssize_t		byte_read;
+
+	byte_read = 1;
+	while (byte_read)
+	{
+		byte_read = read(fd, buf, BUFFER_SIZE);
+		if (byte_read == 0 && !stat_arr[fd])
+		{
+			*line = ft_strdup_gnl("");
+			return (byte_read);
+		}
+		if (byte_read == -1)
+			return (-1);
+		buf[byte_read] = '\0';
+		stat_arr[fd] = ft_store_line(buf, stat_arr[fd]);
+		if (ft_strchr_gnl(buf, '\n'))
+			break ;
+	}
+	stat_arr[fd] = ft_lines_split(stat_arr[fd], line, byte_read);
+	if (byte_read <= 0 && !stat_arr[fd])
+		return (byte_read);
+	return (1);
+}

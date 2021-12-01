@@ -6,7 +6,7 @@
 /*   By: cfiliber <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/25 20:01:17 by cfiliber          #+#    #+#             */
-/*   Updated: 2021/11/25 19:14:28 by cfiliber         ###   ########.fr       */
+/*   Updated: 2021/12/01 12:35:15 by cfiliber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ int				ft_tolower(int c);
 void			*ft_calloc(size_t count, size_t size);
 char			*ft_strdup(const char *s1);
 char			*ft_substr(char const *s, unsigned int start, int len);
-char			*ft_strjoin(char const *s1, char const *s2);
+char			*ft_strjoin(char *s1, char *s2);
 char			*ft_strtrim(char const *s1, char const *set);
 char			**ft_split(char const *s, char c);
 char			*ft_itoa(int n);

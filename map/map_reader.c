@@ -6,7 +6,7 @@
 /*   By: cfiliber <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/29 15:35:56 by cfiliber          #+#    #+#             */
-/*   Updated: 2021/11/30 18:49:38 by cfiliber         ###   ########.fr       */
+/*   Updated: 2021/12/01 17:53:17 by cfiliber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ char	**read_map(char *file)
 
 	line_count = file_linecount(file);
     if (line_count <= 0)
-		return (null_error("the file may not exist.\nChoose one of theese map files:\n map1.ber  map2.ber"));
+		return (null_error("the file may not exist.\n\nChoose one of theese map files:\n maps/map1.ber  maps/map2.ber"));
 	map = malloc(sizeof(char *) * line_count + 1);
 	if (map == NULL)
 		return (null_error("malloc failure on read_map()"));
@@ -67,9 +67,8 @@ char	**read_map(char *file)
     i = 0;
     while (i < line_count)
 	{
-        map[i] = get_next_line(fd);//ogni stringa map[i] viene allocata in gnl
-		if (!map)
-			return (null_error("get_next_line failure"));
+        get_next_line(fd, &map[i]);//ogni stringa map[i] viene allocata in gnl
+        i++;
 	}
     map[i] = NULL;
     close(fd);

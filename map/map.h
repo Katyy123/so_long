@@ -6,7 +6,7 @@
 /*   By: cfiliber <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/27 15:54:46 by cfiliber          #+#    #+#             */
-/*   Updated: 2021/11/30 19:38:15 by cfiliber         ###   ########.fr       */
+/*   Updated: 2021/12/01 11:25:21 by cfiliber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ char	            **read_map(char *file);
 char                **map_parse(char *file);
 
 /* map_checker.c */
-t_map_check_data	map_check_init(t_map_check_data data, char **map);
+t_map_check_data	map_check_init(char **map);
 void	            is_rectangular(char *row, t_map_check_data *data);
 void	            is_valid_char(char character, t_map_check_data *data);
 void	            check_border(char c, t_map_check_data *data, int x, int y);
