@@ -6,7 +6,7 @@
 /*   By: cfiliber <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/18 17:01:40 by cfiliber          #+#    #+#             */
-/*   Updated: 2021/11/30 19:09:21 by cfiliber         ###   ########.fr       */
+/*   Updated: 2021/12/03 14:10:28 by cfiliber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@
 # define KEY_S 1
 # define KEY_ESC 53
 
-/* Tiles */
+/* Tiles */ //usa enum
 # define EMPTY '0'
 # define WALL '1'
 # define COLLECTABLE 'C'

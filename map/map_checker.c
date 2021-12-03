@@ -6,7 +6,7 @@
 /*   By: cfiliber <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/27 15:52:04 by cfiliber          #+#    #+#             */
-/*   Updated: 2021/12/01 18:33:37 by cfiliber         ###   ########.fr       */
+/*   Updated: 2021/12/03 10:09:05 by cfiliber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,6 @@ void	is_rectangular(char *row, t_map_check_data *data)
 
 void	is_valid_char(char character, t_map_check_data *data)
 {
-	printf("character read: %c\n", character);//togli
 	if (character != '0' && character != '1' && character != 'P' &&
 		character != 'E' && character != 'C')
 		data->valid_char = FALSE;
@@ -45,10 +44,9 @@ void	check_border(char c, t_map_check_data *data, int x, int y)
 {
 	if (x == 0 || y == 0 || x == data->size_x - 1 || y == data->size_y - 1)
 	{
-		if (c != 1)
+		if (c != '1')
 			data->border_walls = FALSE;
 	}
-	printf("border_walls in check_border() = %d\n", data->border_walls);
 }
 
 t_bool	valid_map(char **map)
@@ -59,12 +57,12 @@ t_bool	valid_map(char **map)
 	int					y;
 
 	valid = TRUE;
-	x = 0;
 	y = 0;
 	data = map_check_init(map);
 	while (map[y])
 	{
 		is_rectangular(map[y], &data);
+		x = 0;
 		while (map[y][x])
 		{
 			is_valid_char(map[y][x], &data);
