@@ -1,28 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_free_chartable.c                                :+:      :+:    :+:   */
+/*   map_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cfiliber <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/25 19:12:10 by cfiliber          #+#    #+#             */
-/*   Updated: 2021/11/25 19:12:56 by cfiliber         ###   ########.fr       */
+/*   Created: 2021/12/04 16:04:35 by cfiliber          #+#    #+#             */
+/*   Updated: 2021/12/04 16:11:02 by cfiliber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "map.h"
 
-/* Frees a 2D table */
-void	ft_free_chartable(char **table)
+void    free_tile_map(t_tile **tile_map)
 {
-	int	i;
+    int i;
 
-	i = 0;
-	while (table[i])
-	{
-		free(table[i]);
-		i++;
-	}
-	free(table);
+    i = 0;
+    while (tile_map[i])
+        free(tile_map[i++]);
+    free(tile_map);
 }
-

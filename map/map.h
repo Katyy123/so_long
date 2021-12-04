@@ -6,7 +6,7 @@
 /*   By: cfiliber <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/27 15:54:46 by cfiliber          #+#    #+#             */
-/*   Updated: 2021/12/01 11:25:21 by cfiliber         ###   ########.fr       */
+/*   Updated: 2021/12/04 15:09:24 by cfiliber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ typedef struct s_map_check_data
 int                 valid_file(int argc, char *file);
 int                 file_linecount(char *file);
 char	            **read_map(char *file);
-char                **map_parse(char *file);
+t_tile              **map_parse(char *file, t_game *game);
 
 /* map_checker.c */
 t_map_check_data	map_check_init(char **map);

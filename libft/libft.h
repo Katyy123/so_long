@@ -6,7 +6,7 @@
 /*   By: cfiliber <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/25 20:01:17 by cfiliber          #+#    #+#             */
-/*   Updated: 2021/12/01 12:35:15 by cfiliber         ###   ########.fr       */
+/*   Updated: 2021/12/04 15:49:59 by cfiliber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ void			ft_lstclear(t_list **lst, void (*del)(void *));
 void			ft_lstiter(t_list *lst, void (*f)(void *));
 t_list			*ft_lstmap(t_list *lst, void *(*f)(void *),
 					void (*del)(void *));
-int				ft_chartable_linecount(char **table);
-void			ft_free_chartable(char **table);
+int				ft_char_mtx_linecount(char **mtx);
+void			ft_free_char_mtx(char **mtx);
 
 #endif

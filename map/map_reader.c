@@ -6,7 +6,7 @@
 /*   By: cfiliber <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/29 15:35:56 by cfiliber          #+#    #+#             */
-/*   Updated: 2021/12/03 14:56:46 by cfiliber         ###   ########.fr       */
+/*   Updated: 2021/12/04 18:31:25 by cfiliber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,21 +75,21 @@ char	**read_map(char *file)
 	return (map);
 }
 
-t_tile  **map_parse(char *file)//poi rimettere t_tile, se lo userò, e game come parametro
+t_tile  **map_parse(char *file, t_game *game)//poi rimettere t_tile, se lo userò, e game come parametro
 {
     char    **map;
-    //t_tile  **tile_map;
+    t_tile  **tile_map;
     
     map = read_map(file);
     if (!map)
         return (NULL);
     if (valid_map(map) == FALSE)
     {
-        ft_free_chartable(map);
+        ft_free_char_mtx(map);
         return (NULL);
     }
     tile_map = gen_tilemap(map, game);
-    ft_free_chartable(map);
+    ft_free_char_mtx(map);
     if (!tile_map)
         return(NULL);
     return (tile_map);

@@ -1,21 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   game_init.c                                        :+:      :+:    :+:   */
+/*   ft_free_chartable.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cfiliber <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/12/03 15:15:50 by cfiliber          #+#    #+#             */
-/*   Updated: 2021/12/04 18:32:40 by cfiliber         ###   ########.fr       */
+/*   Created: 2021/11/25 19:12:10 by cfiliber          #+#    #+#             */
+/*   Updated: 2021/12/04 15:55:52 by cfiliber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../so_long.h"
+#include "libft.h"
 
-void    game_init(t_game *game)
+void	ft_free_char_mtx(char **mtx)
 {
-    game->mlx = mlx_init();
-    game->win_size_x = x * IMG_SIZE;
-    
-    game->win = mlx_new_window(game->mlx, )
+	int	i;
+
+	i = 0;
+	while (mtx[i])
+	{
+		free(mtx[i]);
+		i++;
+	}
+	free(mtx);
 }
+

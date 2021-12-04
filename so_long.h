@@ -6,7 +6,7 @@
 /*   By: cfiliber <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/18 17:01:40 by cfiliber          #+#    #+#             */
-/*   Updated: 2021/12/03 14:10:28 by cfiliber         ###   ########.fr       */
+/*   Updated: 2021/12/04 18:17:39 by cfiliber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,18 +27,21 @@
 # define KEY_S 1
 # define KEY_ESC 53
 
-/* Tiles */ //usa enum
-# define EMPTY '0'
-# define WALL '1'
-# define COLLECTABLE 'C'
-# define PLAYER 'P'
-# define EXIT 'E'
-
 /* Errors */
-#define MLX_ERROR -1
+# define MLX_ERROR -1
 
 /* Size of every character */
 # define IMG_SIZE 90
+
+/* Tiles types*/
+typedef enum e_tile_type
+{
+	EMPTY = '0',
+	WALL = '1',
+	PLAYER = 'P',
+	EXIT = 'E',
+	COLLECTABLE = 'C'	
+}	t_tile_type;
 
 /* Boolean values */
 typedef enum	e_bool
@@ -47,10 +50,10 @@ typedef enum	e_bool
 	FALSE = 0
 }	t_bool;
 
-/* Struct for each tile */
+/* Struct for each tile. Tiles are arranged in a matrix */
 typedef struct	s_tile
 {
-	char			type;
+	t_tile_type		type;
 	int				position_x;
 	int				position_y;
 	struct s_tile	*up;//puntatore alla casella (tile) superiore
@@ -59,21 +62,33 @@ typedef struct	s_tile
 	struct s_tile	*right;
 }	t_tile;
 
-typedef struct	s_img {
-	void	*img;
-	char	*addr;
+typedef struct	s_panel 
+{
+	void	*pointer;
+	char	*pix_address;
 	int		bits_per_pixel;
 	int		line_length;
 	int		endian;
-}				t_data;
+}	t_panel;
 
-typedef struct	s_game {
-	void	*mlx;
-	void	*win;
-	int		moves;
-	int		collects;
-	t_tile	**tilemap;
-}				t_game;
+typedef struct	s_game 
+{
+	void		*mlx;
+	void		*win;
+	int			win_size_x;
+	int			win_size_y;
+	t_tile		**tile_map;
+	t_tile		*player;
+	void		*player_img;
+	int			collects;//number of collectables
+	int			moves;
+	int			img_size_x;
+	int			img_size_y;
+	void		*wall_img;
+	void		*collect_img;
+	void		*door_img;
+	void		*panel;//puntatore all'immagine
+}	t_game;
 
 /* main.c */
 int main(int argc, char **argv);

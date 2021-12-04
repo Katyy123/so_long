@@ -6,21 +6,18 @@
 /*   By: cfiliber <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/25 18:49:48 by cfiliber          #+#    #+#             */
-/*   Updated: 2021/11/25 18:50:07 by cfiliber         ###   ########.fr       */
+/*   Updated: 2021/12/04 15:55:24 by cfiliber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-/* Returns the number of lines a 2D string table that ends in NULL
--> *chars*\0
--> *chars*\0
--> NULL 
-Retunr value: 2 */
-int	ft_chartable_linecount(char **table)
+#include "libft.h"
+
+int	ft_char_mtx_linecount(char **mtx)
 {
 	int	count;
 
 	count = 0;
-	while (table[count])
+	while (mtx[count])
 		count++;
 	return (count);
 }
