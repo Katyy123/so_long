@@ -6,7 +6,7 @@
 #    By: cfiliber <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/18 17:00:59 by cfiliber          #+#    #+#              #
-#    Updated: 2021/12/01 17:58:04 by cfiliber         ###   ########.fr        #
+#    Updated: 2021/12/07 19:23:07 by cfiliber         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,15 +15,17 @@ NAME = so_long
 LIB_PATH = ./libft/
 LIB = $(LIB_PATH)libft.a
 
-SRCS = $(MAIN_SRC) $(SRC_GNL) $(SRC_MAP)
+SRCS = $(MAIN_SRC) $(SRC_GNL) $(SRC_MAP) $(SRC_GAME)
 
 MAIN_SRC = main.c errors.c
 
 GNL = get_next_line.c get_next_line_utils.c
 SRC_GNL = $(addprefix gnl/, $(GNL))
 
-MAP = map_reader.c map_checker.c map_checker_2.c
+MAP = map_reader.c map_checker.c map_checker_2.c map_utils.c tile_map_gen.c
 SRC_MAP = $(addprefix map/, $(MAP))
+
+GAME = game_init.c input.c render.c end_program.c
 
 OBJS = $(SRCS:.c=.o)
 

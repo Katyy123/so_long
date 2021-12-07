@@ -6,7 +6,7 @@
 /*   By: cfiliber <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/18 17:01:40 by cfiliber          #+#    #+#             */
-/*   Updated: 2021/12/04 18:17:39 by cfiliber         ###   ########.fr       */
+/*   Updated: 2021/12/07 19:28:36 by cfiliber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,6 @@
 # define KEY_W 13
 # define KEY_S 1
 # define KEY_ESC 53
-
-/* Errors */
-# define MLX_ERROR -1
 
 /* Size of every character */
 # define IMG_SIZE 90
@@ -54,7 +51,7 @@ typedef enum	e_bool
 typedef struct	s_tile
 {
 	t_tile_type		type;
-	int				position_x;
+	int				position_x;//position cosidering pixels?
 	int				position_y;
 	struct s_tile	*up;//puntatore alla casella (tile) superiore
 	struct s_tile	*down;
@@ -62,15 +59,17 @@ typedef struct	s_tile
 	struct s_tile	*right;
 }	t_tile;
 
-typedef struct	s_panel 
+/* Struct for the image of the grass */
+typedef struct	s_grass 
 {
-	void	*pointer;
-	char	*pix_address;
-	int		bits_per_pixel;
+	void	*grass;
+	char	*addr;
+	int		bits_per_pix;
 	int		line_length;
 	int		endian;
-}	t_panel;
+}	t_grass;
 
+/* All info for the game */
 typedef struct	s_game 
 {
 	void		*mlx;
@@ -82,12 +81,12 @@ typedef struct	s_game
 	void		*player_img;
 	int			collects;//number of collectables
 	int			moves;
-	int			img_size_x;
-	int			img_size_y;
+	int			imgs_size_x;
+	int			imgs_size_y;
 	void		*wall_img;
 	void		*collect_img;
-	void		*door_img;
-	void		*panel;//puntatore all'immagine
+	void		*exit_img;
+	void		*grass;//puntatore all'immagine del prato
 }	t_game;
 
 /* main.c */
@@ -98,5 +97,33 @@ int main(int argc, char **argv);
 int		error(char *message);
 void    *null_error(char *message);
 void    print_warning(char *message);
+
+/* MAP : map_reader.c */
+
+
+/* MAP : map_checker.c */
+
+
+/* MAP : map_checker_2.c */
+
+
+/* MAP : tile_map_gen.c */
+
+
+/* MAP : map_utils.c */
+
+
+/* GAME : game_init.c */
+
+
+/* GAME : input.c */
+
+
+/* GAME : render.c */
+
+
+/* GAME : end_program.c */
+
+
 
 #endif
