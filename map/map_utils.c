@@ -6,7 +6,7 @@
 /*   By: cfiliber <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/04 16:04:35 by cfiliber          #+#    #+#             */
-/*   Updated: 2021/12/07 15:12:12 by cfiliber         ###   ########.fr       */
+/*   Updated: 2021/12/08 18:57:20 by cfiliber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 
 void    free_tile_map(t_tile **tile_map)
 {
-    int i;
+	int i;
 
-    i = 0;
-    while (tile_map[i])
-        free(tile_map[i++]);
-    free(tile_map);
+	i = 0;
+	while (tile_map[i])
+		free(tile_map[i++]);
+	free(tile_map);
 }

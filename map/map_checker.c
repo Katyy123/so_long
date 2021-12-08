@@ -6,7 +6,7 @@
 /*   By: cfiliber <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/27 15:52:04 by cfiliber          #+#    #+#             */
-/*   Updated: 2021/12/07 15:12:53 by cfiliber         ###   ########.fr       */
+/*   Updated: 2021/12/08 18:57:05 by cfiliber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ t_map_check_data	map_check_init(char **map)
 	t_map_check_data data;
 	
 	data.size_x = ft_strlen(map[0]);
-	data.size_y = ft_chartable_linecount(map);
+	data.size_y = ft_char_mtx_linecount(map);
 	data.player = 0;
 	data.collect = 0;
 	data.exit = 0;

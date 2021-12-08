@@ -6,7 +6,7 @@
 #    By: cfiliber <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/18 17:00:59 by cfiliber          #+#    #+#              #
-#    Updated: 2021/12/07 19:23:07 by cfiliber         ###   ########.fr        #
+#    Updated: 2021/12/08 18:48:32 by cfiliber         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,12 +26,13 @@ MAP = map_reader.c map_checker.c map_checker_2.c map_utils.c tile_map_gen.c
 SRC_MAP = $(addprefix map/, $(MAP))
 
 GAME = game_init.c input.c render.c end_program.c
+SRC_GAME = $(addprefix game/, $(GAME))
 
 OBJS = $(SRCS:.c=.o)
 
 CC = gcc
 
-CFLAGS = -Wall -Wextra -Werror -g -I libft -Imlx #-fsanitize=address# ho aggiunto -Imlx per includere minilibX 
+CFLAGS = -Wall -Wextra -Werror -g -I libft -Imlx
 
 GREEN = '\x1b[32m'
 YELLOW = '\x1b[33m'

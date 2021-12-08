@@ -6,25 +6,25 @@
 /*   By: cfiliber <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/27 16:15:40 by cfiliber          #+#    #+#             */
-/*   Updated: 2021/12/01 18:03:53 by cfiliber         ###   ########.fr       */
+/*   Updated: 2021/12/08 19:01:09 by cfiliber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-int error(char *message)
+int	error(char *message)
 {
-    printf("\x1b[31m""Error:\n%s\n""\x1b[0m", message);
-    return (0);
+	printf("\x1b[31m""Error:\n%s\n""\x1b[0m", message);
+	return (0);
 }
 
-void    *null_error(char *message)
+void	*null_error(char *message)
 {
-    printf("\x1b[31m""Error:\n%s\n""\x1b[0m", message);
-    return (NULL);
+	printf("\x1b[31m""Error:\n%s\n""\x1b[0m", message);
+	return (NULL);
 }
 
-void    print_warning(char *message)
+void	print_warning(char *message)
 {
-    printf("\x1b[33m""Error:\n%s\n""\x1b[0m", message);
+	printf("\x1b[33m""Error:\n%s\n""\x1b[0m", message);
 }
