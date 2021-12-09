@@ -6,11 +6,20 @@
 /*   By: cfiliber <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/07 18:41:13 by cfiliber          #+#    #+#             */
-/*   Updated: 2021/12/08 18:56:45 by cfiliber         ###   ########.fr       */
+/*   Updated: 2021/12/09 19:31:07 by cfiliber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../so_long.h"
+
+void	free_images(t_game *game)
+{
+	mlx_destroy_image(game->mlx, game->grass_img);
+	mlx_destroy_image(game->mlx, game->wall_img);
+	mlx_destroy_image(game->mlx, game->player_img);
+	mlx_destroy_image(game->mlx, game->exit_img);
+	mlx_destroy_image(game->mlx, game->collect_img);
+}
 
 void    put_image(t_tile tile, t_game *game, int x, int y)
 {
@@ -32,6 +41,8 @@ int render(t_game *game)
 	int     y;
 
 	mlx_clear_window(game->mlx, game->win);
+	free_images(game);
+	files_to_imgs(game);
 	y = 0;
 	while (game->tile_map[y])
 	{

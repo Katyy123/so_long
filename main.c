@@ -6,7 +6,7 @@
 /*   By: cfiliber <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/27 15:35:41 by cfiliber          #+#    #+#             */
-/*   Updated: 2021/12/08 19:14:46 by cfiliber         ###   ########.fr       */
+/*   Updated: 2021/12/09 19:02:54 by cfiliber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ int	main(int argc, char **argv)
 	if (!game_init(&game))
 		return (-1);
 	mlx_hook(game.win, 2, (1L << 0), input, &game);
+	mlx_hook(game.win, 17, 0, end_program, &game);//collega x della finestra a end_program
 	mlx_loop_hook(game.mlx, render, &game);
 	mlx_loop(game.mlx);
 	return (0);
