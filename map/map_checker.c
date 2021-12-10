@@ -6,7 +6,7 @@
 /*   By: cfiliber <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/27 15:52:04 by cfiliber          #+#    #+#             */
-/*   Updated: 2021/12/08 18:57:05 by cfiliber         ###   ########.fr       */
+/*   Updated: 2021/12/10 18:12:43 by cfiliber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 t_map_check_data	map_check_init(char **map)
 {
-	t_map_check_data data;
-	
+	t_map_check_data	data;
+
 	data.size_x = ft_strlen(map[0]);
 	data.size_y = ft_char_mtx_linecount(map);
 	data.player = 0;
@@ -35,8 +35,8 @@ void	is_rectangular(char *row, t_map_check_data *data)
 
 void	is_valid_char(char character, t_map_check_data *data)
 {
-	if (character != '0' && character != '1' && character != 'P' &&
-		character != 'E' && character != 'C')
+	if (character != '0' && character != '1' && character != 'P'
+		&& character != 'E' && character != 'C')
 		data->valid_char = FALSE;
 }
 
@@ -72,6 +72,7 @@ t_bool	valid_map(char **map)
 		}
 		y++;
 	}
+	check_map_size(x, y);
 	valid = check_map_errors(data);
 	return (valid);
 }

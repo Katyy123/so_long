@@ -6,16 +6,16 @@
 /*   By: cfiliber <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/03 15:21:51 by cfiliber          #+#    #+#             */
-/*   Updated: 2021/12/08 18:57:41 by cfiliber         ###   ########.fr       */
+/*   Updated: 2021/12/10 18:29:29 by cfiliber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "map.h"
 
-t_tile  **alloc_tile_map(char **map)
+t_tile	**alloc_tile_map(char **map)
 {
-	t_tile  **tile_map;
-	int     i;
+	t_tile	**tile_map;
+	int		i;
 
 	tile_map = malloc(sizeof(t_tile *) * ft_char_mtx_linecount(map) + 1);
 	if (!tile_map)
@@ -26,7 +26,7 @@ t_tile  **alloc_tile_map(char **map)
 		tile_map[i] = malloc(sizeof(t_tile) * ft_strlen(map[i]) + 1);
 		if (!tile_map[i])
 		{
-			while (i > 0)    
+			while (i > 0)
 				free(tile_map[--i]);
 			free_tile_map(tile_map);
 			return (NULL);
@@ -36,8 +36,8 @@ t_tile  **alloc_tile_map(char **map)
 	return (tile_map);
 }
 
-void    set_tile(t_tile **tile_map, char c, int x, int y)
-{   
+void	set_tile(t_tile **tile_map, char c, int x, int y)
+{
 	if (c == 'P')
 		tile_map[y][x].type = PLAYER;
 	else if (c == 'E')
@@ -59,7 +59,7 @@ void    set_tile(t_tile **tile_map, char c, int x, int y)
 	tile_map[y][x].right = &tile_map[y][x + 1];
 }
 
-void    set_game(t_tile *tile, t_game *game)
+void	set_game(t_tile *tile, t_game *game)
 {
 	if (tile->type == PLAYER)
 		game->player = tile;
@@ -67,11 +67,11 @@ void    set_game(t_tile *tile, t_game *game)
 		game->collects++;
 }
 
-t_tile  **gen_tile_map(char **map, t_game *game)
+t_tile	**gen_tile_map(char **map, t_game *game)
 {
-	t_tile  **tile_map;
-	int     x;
-	int     y;
+	t_tile	**tile_map;
+	int		x;
+	int		y;
 
 	tile_map = alloc_tile_map(map);
 	if (!tile_map)

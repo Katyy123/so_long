@@ -6,7 +6,7 @@
 /*   By: cfiliber <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/18 17:01:40 by cfiliber          #+#    #+#             */
-/*   Updated: 2021/12/08 19:07:42 by cfiliber         ###   ########.fr       */
+/*   Updated: 2021/12/10 17:51:44 by cfiliber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,6 +86,7 @@ int		main(int argc, char **argv);
 int		error(char *message);
 void	*null_error(char *message);
 void	print_warning(char *message);
+int		exit_error(char *message, t_game *game);
 
 /* GAME : game_init.c */
 int		game_init(t_game *game);
@@ -101,5 +102,6 @@ void	put_image(t_tile tile, t_game *game, int x, int y);
 
 /* GAME : end_program.c */
 int		end_program(t_game *game);
+void	protect_free_images(t_game *game);
 
 #endif

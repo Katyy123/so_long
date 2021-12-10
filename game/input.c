@@ -6,13 +6,13 @@
 /*   By: cfiliber <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/07 15:23:32 by cfiliber          #+#    #+#             */
-/*   Updated: 2021/12/08 18:56:36 by cfiliber         ###   ########.fr       */
+/*   Updated: 2021/12/10 17:56:39 by cfiliber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../so_long.h"
 
-t_bool  move(t_game *game, t_tile *tile)
+t_bool	move(t_game *game, t_tile *tile)
 {
 	if (tile->type == EMPTY)
 	{
@@ -27,7 +27,7 @@ t_bool  move(t_game *game, t_tile *tile)
 		game->player = tile;
 		game->collects--;
 	}
-	else if(tile->type == EXIT && game->collects == 0)
+	else if (tile->type == EXIT && game->collects == 0)
 	{
 		game->player->type = EMPTY;
 		game->player = NULL;
@@ -38,9 +38,9 @@ t_bool  move(t_game *game, t_tile *tile)
 	return (TRUE);
 }
 
-int input(int key, t_game *game)
+int	input(int key, t_game *game)
 {
-	t_bool  moved;
+	t_bool	moved;
 
 	moved = FALSE;
 	if (key == KEY_ESC)
@@ -60,5 +60,5 @@ int input(int key, t_game *game)
 		game->moves++;
 		printf("Moves: %d\n", game->moves);
 	}
-	return (1);       
+	return (1);
 }

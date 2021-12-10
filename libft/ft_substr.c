@@ -6,7 +6,7 @@
 /*   By: cfiliber <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/25 19:59:30 by cfiliber          #+#    #+#             */
-/*   Updated: 2021/11/25 18:59:26 by cfiliber         ###   ########.fr       */
+/*   Updated: 2021/12/10 18:06:55 by cfiliber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 char	*ft_substr(char const *s, unsigned int start, int len)
 {
 	char	*new_str;
-	int	i;
-	int	j;
+	int		i;
+	int		j;
 
 	new_str = (char *)malloc(len + 1);
 	if (!s || !new_str)

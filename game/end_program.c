@@ -6,7 +6,7 @@
 /*   By: cfiliber <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/07 15:15:43 by cfiliber          #+#    #+#             */
-/*   Updated: 2021/12/08 19:08:59 by cfiliber         ###   ########.fr       */
+/*   Updated: 2021/12/10 17:52:32 by cfiliber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,8 @@ int	end_program(t_game *game)
 	{
 		printf("\x1b[35m""\nCongratulations!!""\x1b[0m");
 		printf("\x1b[35m"" You finished the game!!\n\n""\x1b[0m");
-		printf("\x1b[32m""Can you do it again with less moves??\n\n""\x1b[0m");
+		printf("\x1b[32m""Can you do it again with less than %d moves??\n\n"
+			"\x1b[0m", game->moves);
 	}
 	else
 	{
